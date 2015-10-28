@@ -51,12 +51,35 @@ var square = {
 
 //canvasContext.fillStyle = 'red';
 
+var mousedown = false;
 
 setInterval(function(){
 	canvasContext.clearRect(0,0,canvas.width,canvas.height);
-	canvasContext.strokeRect(square.x, square.y, square.width, square.height);
+	canvasContext.fillStyle = 'blue';
+	canvasContext.strokeStyle = 'green';
+
+	if(mousedown){
+		canvasContext.fillRect(square.x, square.y, square.width, square.height);
+	}
+	else
+		canvasContext.strokeRect(square.x, square.y, square.width, square.height);
+
 }, 1000/60);
+
 document.addEventListener('mousemove', function(e){
 	square.y = e.pageY - 12;
 
 });
+
+document.addEventListener('mousedown', function(e){
+	mousedown = true;
+
+});
+
+document.addEventListener('mouseup', function(e){
+	mousedown = false;
+
+});
+
+
+
