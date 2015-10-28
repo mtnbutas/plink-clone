@@ -4,9 +4,15 @@ var minFrequency = 50;
 var maxFrequency = 2000;
 
 var oscillator = audioContext.createOscillator();
-oscillator.connect(audioContext.destination);
-oscillator.frequency.value = 5000;
+var gain = audioContext.createGain();
+
+oscillator.connect(gain);
+gain.connect(audioContext.destination);
+
+oscillator.frequency.value = 1000;
 oscillator.start(audioContext.currentTime);
+
+gain.gain.value = 0;
 
 document.addEventListener('mousemove', function(e) {
 	var percentage = 1 - e.pageY/window.innerHeight;
@@ -15,4 +21,15 @@ document.addEventListener('mousemove', function(e) {
 
 	oscillator.frequency.linearRampToValueAtTime(frequency, audioContext.currentTime);
 
+});
+
+document.addEventListener('mousedown', function(e){
+	//console.log('MOUSE DOWN!');
+
+	gain.gain.linearRampToValueAtTime(1, audioContext.currentTime);
+
+});
+
+document.addEventListener('mouseup', function(e) {
+	gain.gain.linearRampToValueAtTime(0, audioContext.currentTime);
 });
