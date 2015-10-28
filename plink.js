@@ -1,8 +1,6 @@
+//audio stuff
 var audioContext = new AudioContext();
-var canvas = document.querySelector('canvas');
-var canvasContext = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
 
 var minFrequency = 50;
 var maxFrequency = 2000;
@@ -36,4 +34,29 @@ document.addEventListener('mousedown', function(e){
 
 document.addEventListener('mouseup', function(e) {
 	gain.gain.linearRampToValueAtTime(0, audioContext.currentTime);
+});
+
+//canvas stuff
+var canvas = document.querySelector('canvas');
+var canvasContext = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var square = {
+	x: window.innerWidth/2 - 12,
+	y: window.innerHeight/2 - 12,
+	width: 24,
+	height: 24
+}
+
+//canvasContext.fillStyle = 'red';
+
+
+setInterval(function(){
+	canvasContext.clearRect(0,0,canvas.width,canvas.height);
+	canvasContext.strokeRect(square.x, square.y, square.width, square.height);
+}, 1000/60);
+document.addEventListener('mousemove', function(e){
+	square.y = e.pageY - 12;
+
 });
