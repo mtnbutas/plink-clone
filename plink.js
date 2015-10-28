@@ -1,4 +1,8 @@
 var audioContext = new AudioContext();
+var canvas = document.querySelector('canvas');
+var canvasContext = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 var minFrequency = 50;
 var maxFrequency = 2000;
