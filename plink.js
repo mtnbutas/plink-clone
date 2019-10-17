@@ -24,7 +24,7 @@ window.onmousemove = () => {
             oscillator.frequency.linearRampToValueAtTime(frequency, audioContext.currentTime);
         });
 
-        document.addEventListener('mousedown', function(e){
+        document.addEventListener('mousedown', function(e) {
             gain.gain.linearRampToValueAtTime(1, audioContext.currentTime);
         });
 
@@ -50,7 +50,7 @@ var square = {
 var mousedown = false;
 
 setInterval(function() {
-    canvasContext.clearRect(0,0,canvas.width,canvas.height);
+    canvasContext.clearRect(0, 0 ,canvas.width, canvas.height);
     canvasContext.fillStyle = 'blue';
     canvasContext.strokeStyle = 'green';
     if (mousedown) {
@@ -58,16 +58,16 @@ setInterval(function() {
     } else {
         canvasContext.strokeRect(square.x, square.y, square.width, square.height);
     }
-}, 1000/60);
+}, 1000 / 60);
 
-document.addEventListener('mousemove', function(e){
+document.addEventListener('mousemove', function(e) {
     square.y = e.pageY - 12;
 });
 
-document.addEventListener('mousedown', function(e){
+document.addEventListener('mousedown', function(e) {
     mousedown = true;
 });
 
-document.addEventListener('mouseup', function(e){
+document.addEventListener('mouseup', function(e) {
     mousedown = false;
 });
